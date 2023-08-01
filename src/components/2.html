@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .management_all {
+        background-color: #D0DbDf;
+        width: 561px;
+        height: 398px;
+        padding: 10px 15px 15px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .gold {
+        font-size: 18px;
+        display: flex;
+        font-weight: 500;
+        margin-bottom: 5px;
+
+    }
+
+    .buy {
+        margin-right: 40px;
+    }
+
+    .buttons {
+margin-left: 5px;
+
+    }
+
+    .button_left {
+        width: 51%; 
+        height: 31.75px;
+        padding: 0;
+        margin: 0 -5px;
+        border: none;
+        background-color: white;
+        font-weight: 500;
+        font-size: 16px;
+
+    }
+
+    .button_right {
+        width: 51%;
+        height: 31.75px;
+        padding: 0;
+        margin: 0 -5px;
+        border: none;
+        font-weight: 500;
+        background-color: #38505c;
+        color: white;
+        font-size: 16px;
+
+
+    }
+
+    .infor {
+        background-color: rgb(255, 255, 255);
+        max-width: 540px;
+        height: 233.78px;
+        padding: 30px 40px;
+        position: relative;
+        
+    }
+    .pen{
+        position: absolute;
+        right: 50px;
+        top: 10px;
+        display: none;
+    }
+
+    .name {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        border-radius: 6px; 
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+    #sex{
+        width: 170px;
+        height: 30px;
+        margin-left: 20px;
+        border-radius: 6px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+    }
+
+    .password {
+        margin-left: 20px;
+        border-radius: 6px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+
+    .phone {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        border-radius: 6px; 
+        margin-top: 10px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+
+    .birthday {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        border-radius: 6px; 
+        margin-top: 10px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+
+    .mail {
+        margin-left: 20px;
+        border-radius: 6px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+        margin-left: 8px;
+    }
+    .address{
+        margin-left: 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px; 
+        margin-top: 10px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+        width: 410px;
+    }
+    input {
+        height: 24px;
+    }
+
+    .barcode {
+        display: flex;
+        flex-direction: column;
+        max-width: 100px;
+        font-size: 13px;
+        position: absolute;
+        bottom: 35px;
+        right: 56px;
+    }
+    .confirm{   
+        width: 92px;
+        background-color: #263238;
+        color: white;
+        border-radius: 30px;
+        position: absolute;
+        bottom: 5px;
+        right: 50px;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+
+
+    <div class="management_all">
+        <div class="title">白金會員_王曉明</div>
+        <div class="gold">
+            <div class="buy">儲值金:5600元</div>
+            <div class="spend">當年度累積消費金額:3670元</div>
+        </div>
+        <div class="member_infor">
+            <div class="buttons">
+                <button class="button_left">會員資料</button>
+                <button class="button_right">會員儲值金</button>
+            </div>
+            
+            <div class="infor">
+                <img src="../assets/images/member/pen_icon.png" alt="編輯" class="pen">
+                姓名<input type="text" class="name">
+                性別<select name="" id="sex">
+                    <option selected disabled hidden></option>
+                    <option >男</option>
+                    <option >女</option>
+                </select>
+                <!-- 性別<input type="list" class="sex"> -->
+                電話<input type="text" class="phone">
+                密碼<input type="text" class="password">
+                生日<input type="text" class="birthday">
+                E-Mail<input type="text" class="mail">
+                地址<input type="text" class="address">
+                <div class="barcode">
+                    <img src="../assets/images/member/barcode.png" alt="條碼">1234567890ABCD
+                </div>
+                <button class="confirm">確認</button>
+
+        </div>
+    </div>
+</body>
+
+</html>
