@@ -1,46 +1,50 @@
 <template>
-  <div class="management_all">
-      <div class="title">{{ management_all.title }}</div>
-      <div class="gold">
-          <div class="buy">{{ management_all.buy }}</div>
-          <div class="spend">{{ management_all.spend }}</div>
-      </div>
-      <div class="member_infor">
+  <div>
+    <Form >
+      <template v-slot:form_query>
+        <button class="btn btn-dark member_add" type="submit">
+        新增會員
+        <img src="@/assets/images/member/plus.svg" alt="plus" class="member_plus"> 
+      </button>
+      <select class="form-select w-25" aria-label="Default select example">
+        <option selected>請選擇</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <input type="search">
 
-          <div class="infor">
-              <img src="../assets/images/member/pen_icon.png" alt="編輯" class="pen">
-              <div class="first">
-                  <label for="name"> 姓名<input type="text" class="name" id="name"></label>
-                  <label for="password">密碼<input type="text" class="password" id="password"></label>
-              </div>
-              <div class="second">
-
-                  <label for="phone">電話<input type="text" class="phone" id="phone"></label>
-                  <label for="birthday">生日<input type="text" class="birthday" id="birthday"></label>
-              </div>
-              <div class="third">
-                  <label for="mail">信箱<input type="text" class="mail" id="mail"></label>
-              </div>
-              <div class="barcode">
-                  <img src="../assets/images/member/barcode.png" alt="條碼">{{management_all.mem_no}}
-              </div>
-              <button class="confirm">確認</button>
-
-          </div>
-      </div>
+      
+ </template>
+      <template v-slot:form_table >
+        <table>
+        <tr>
+          <th v-for="column in columns">{{ column }}</th>
+        </tr>
+        <tr v-for="(item, index) in dataList" :key="item.index" @click.prevent="memberInfo(index)">
+          <td>{{ item.name }}</td>
+          <td>{{ item.no }}</td>
+          <td>{{ item.rank }}</td>
+          <td>{{ item.mobile }}</td>
+          <td>{{ item.remain }}</td>
+          <td>{{ item.value }}</td>
+        </tr>
+      </table>
+  
+      
+      </template>
+    </Form>
   </div>
-  <div class="back">
-        <div class="text">
-            修改成功！
-        </div>
-        
-        <button class="confirm">返回</button>
-    </div>
 </template>
 
 <script>
 
-export default({
+import Form from '@/components/Form.vue';
+
+export default {
+  components: {
+    Form
+  },
   data() {
       return {
           management_all: 

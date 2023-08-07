@@ -1,0 +1,1 @@
+export const URL = 'http://localhost/DAKA/DAKA_backend/public/phpfile';

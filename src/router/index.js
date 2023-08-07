@@ -72,7 +72,11 @@ const routes = [
         name: "Modal_edit",
         component: () => import("../components/Modal_edit.vue"),
       },
-      
+      {
+        path: "/seat_now",
+        name: "seat_now",
+        component: () => import("../components/seats/SeatNow.vue"),
+      },
     ],
   },
 

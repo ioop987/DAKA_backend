@@ -1,60 +1,264 @@
 <template>
   <div>
-    <Form >
-      <template v-slot:form_query>
-        <button class="btn btn-dark member_add" type="submit">
-        新增會員
-        <img src="@/assets/images/member/plus.svg" alt="plus" class="member_plus"> 
-      </button>
-     
-      <input type="search">
- </template>
-
-
-
-     
-        <template v-slot:form_table >
-        <table>
+    <Form>
+    <template v-slot:form_query>
+      <Search @emit-txt="getSearch" />
+    </template>
+    <template v-slot:form_table>
+      <table class="main_list" v-show="search">
         <tr>
           <th v-for="column in columns">{{ column }}</th>
         </tr>
-        <tr v-for="(item, index) in dataList" :key="item.index" @click.prevent="memberInfo(index)">
-          <td>{{ item.name }}</td>
-          <td>{{ item.no }}</td>
-          <td>{{ item.rank }}</td>
+        <tr v-for="(item, index) in filteredDataList" :key="index" @click="openModal(index)">
+          <td >{{ item.comics_order_no }}</td>
+          <td>{{ item.menno }}</td>
           <td>{{ item.mobile }}</td>
-          <td>{{ item.remain }}</td>
-          <td>{{ item.value }}</td>
+          <td>{{ item.comics_order_date }}</td>
+          <td>{{ item.comics_order_status}}</td>
         </tr>
       </table>
-      </template>
+      <div class="no_answer" v-if="search && filteredDataList.length === 0">
+        查無此手機號碼，請重新搜尋！
+      </div>
+      <!-- 黑底 -->
+      <div class="modal-backdrop" v-show="showBackdrop"></div>
+      <!-- 彈窗 -->
+      <from v-show="showModal" class="com_reserve_modal">
+        <div class="modal_title">
+          <h5>還書明細</h5>
+          <img src="@/assets/images/member/close.svg" alt="close" class="close_window" @click="closeModal"> 
+        </div>
+        <div class="com_reserve_box">
+          <div class="com_reserve_container">
+            <table>
+              <tr>
+                <td>
+                  <p>會員電話</p>
+                  <span class="detail_content">{{ selectedItem.mobile }}</span>
+                </td>
+                <td>
+                  <p>訂單編號</p>
+                  <span class="detail_content">{{ selectedItem.comics_order_no }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>預約日期</p>
+                  <span class="detail_content">{{ selectedItem.comics_order_date }}</span>
+                </td>
+                <td>
+                  <p>取書日期</p>
+                  <span class="detail_content">{{ selectedItem.comics_borrow_duedate }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>應還日期</p>
+                  <span class="detail_content">{{ selectedItem.comics_return_date }}</span>
+                </td>
+                <td>
+                  <p>歸還日期</p>
+                  <span class="detail_content"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="com_books_detail">
+            <table>
+                <tr>
+                  <th>序號</th>
+                  <th>建檔編碼</th>
+                  <th>漫畫名稱</th>
+                  <th>金額</th>
+                </tr>
+                <tr v-for="(book, index) in selectedItem.books" :key="index">
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ book.comics_no }}</td>
+                  <td>{{ book.title }} {{ book.comics_index }}</td>
+                  <td>{{ book.amount }}</td>
+                </tr>
+            </table>
+          </div>
+          <div class="check_line">
+            <div class="pickup_button">
+              <button type="submit" @click="confirmPickup">還書</button>
+            </div>
+            <div class="total_amount">
+              <tr>
+                <p>總計金額</p>
+                <span>{{ countTotal() }}</span>
+              </tr>
+            </div>
+          </div>
+        </div>
+      </from>
+      <!-- 確認彈窗 -->
+      <div class="confirm_modal" v-show="showConfirmationModal">
+        <h1>確定還書？</h1>
+        <div class="confirm_buttons">
+            <button @click="goBackToSearch">確定</button>
+            <button @click="closeModal">取消</button>
+        </div>
+      </div>
+    </template>    
     </Form>
   </div>
 </template>
 <script>
 import Form from '@/components/Form.vue';
+import Search from '@/components/comics/Search.vue';
 
 export default {
   components: {
-    Form
+    Form,Search
   },
   data() {
     return {
+      search: '',
+      showModal:false,
+      showBackdrop:false,
+      showConfirmationModal: false,
       columns: [
+        '訂單編號',
         '姓名',
-        '會員編號',
-        '會員等級',
-        '手機號碼',
-        '儲值餘額',
-        '當年度累積消費金額'
+        '手機',
+        '預約日期',
+        '租借狀態'
       ],
-     
-
+      dataList:[
+        {
+          comics_order_no: 'CB0001',
+          menno:'王小明',
+          comics_order_date:'2023-05-03',
+          comics_borrow_duedate:'2023-05-04',
+          comics_return_date:'2023-05-07',
+          comics_order_status: '未歸還',
+          mobile:'0988000123',
+          books: [
+          {
+            comics_no: 'CM0001',
+            title: 'ONE PIECE航海王',
+            comics_index:'12',
+            amount: '$10',
+          },
+        ]
+        },
+        {
+          comics_order_no: 'CB0002',
+          menno:'王小明',
+          comics_order_date:'2023-05-04',
+          comics_borrow_duedate:'2023-05-04',
+          comics_return_date:'2023-05-07',
+          comics_order_status: '未歸還',
+          mobile:'0988000333',
+          books: [
+          {
+            comics_no: 'CM0002',
+            title: 'ONE PIECE航海王',
+            comics_index:'12',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0006',
+            title: '(日本版漫畫)咒術迴戰',
+            comics_index:'',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0009',
+            title: '鬼滅之刃',
+            comics_index:'',
+            amount: '$10',
+          },
+        ]
+        },
+        {
+          comics_order_no: 'CB0003',
+          menno:'王小明',
+          comics_order_date:'2023-05-05',
+          comics_borrow_duedate:'2023-05-06',
+          comics_return_date:'2023-05-09',
+          comics_order_status: '未歸還',
+          mobile:'0988000123',
+          books: [
+          {
+            comics_no: 'CM0003',
+            title: 'ONE PIECE航海王',
+            comics_index:'12',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0014',
+            title: '庫洛魔法使 透明牌篇',
+            comics_index:'1',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0019',
+            title: '庫洛魔法使 透明牌篇',
+            comics_index:'6',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0020',
+            title: '庫洛魔法使 透明牌篇',
+            comics_index:'7',
+            amount: '$10',
+          },
+          {
+            comics_no: 'CM0013',
+            title: '鬼滅之刃',
+            comics_index:'12',
+            amount: '$10',
+          },
+        ]
+        }
+      ],
+      selectedItem:{},
+      filteredDataList: []
     }
   },
   methods: {
- 
+    getSearch(searchMobile) {
+      this.search = searchMobile;
+      if (this.search === '') {
+        this.filteredDataList = this.dataList;
+      } else {
+        this.filteredDataList = this.dataList.filter(item => item.mobile.includes(this.search));
+      }
+    },
+    openModal(index) {
+      // console.log(123);
+      this.showModal=!this.showModal;
+      this.selectedItem=this.filteredDataList[index];
+      console.log(this.selecteditem);
+      this.showBackdrop=true;
+    },
+    closeModal(){
+      this.showConfirmationModal=false;
+      this.showModal=this.showBackdrop=false;
+    },
+    confirmPickup() {
+      this.showConfirmationModal = true;
+      this.showModal=false;
+    },
+    goBackToSearch() {
+    this.search = '';
+    this.showConfirmationModal = this.showBackdrop = false;
+  },
+    countTotal() {
+      let totalAmount = 0;
+      if (this.selectedItem && this.selectedItem.books) {
+        for (const book of this.selectedItem.books) {
+          const amount = parseInt(book.amount.replace('$', ''), 10);
+          if (!isNaN(amount)) {
+            totalAmount += amount;
+          }
+        }
+      }
 
+      return `$${totalAmount}`;
+    },
   }
 }
 </script>

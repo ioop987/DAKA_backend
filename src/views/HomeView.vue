@@ -9,7 +9,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed main_nav_btn fs-4" @click="this.$router.push('/account')">
-              <img src="@/assets/images/customer.svg" alt="daka_logo" class="main_sub_one_img" to="/member.vue">
+              <img src="@/assets/images/account.svg" alt="daka_logo" class="main_sub_one_img" to="/member.vue">
               帳號管理</button>
           </h2>
 
@@ -34,6 +34,7 @@
           </h2>
           <div id="flush-collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample" style="
     background-color: #263238 ">
+            <div class="accordion-body nav_btn_inside fs-5" @click="this.$router.push('/seat_now')"><a>即時座位狀態</a></div>
             <div class="accordion-body nav_btn_inside fs-5" @click="this.$router.push('/reserve')"><a>預約座位</a></div>
             <div class="accordion-body nav_btn_inside fs-5" @click="this.$router.push('/seat_info')"><a>資料查詢</a></div>
           </div>
@@ -41,7 +42,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed main_nav_btn fs-4" @click="this.$router.push('/news')">
-              <img src="@/assets/images/news.svg" alt="daka_logo" class="main_sub_three_img">
+              <img src="@/assets/images/bx_news.svg" alt="daka_logo" class="main_sub_three_img">
               最新消息管理
             </button>
           </h2>
@@ -205,6 +206,8 @@
 import Member from '@/components/Member.vue'
 import Comics from '@/components/Comics.vue'
 import Reserve from '@/components/seats/Reserve.vue'
+import SeatInfo from '@/components/seats/SeatInfo.vue'
+import SeatNow from '@/components/seats/SeatNow.vue'
 import Order from '@/components/comics/OrderStatus.vue'
 import ComicInfo from '@/components/comics/ComicInfo.vue'
 import ComicReserve from '@/components/comics/ComicReserve.vue'
@@ -217,7 +220,7 @@ import Login from '@/components/Login.vue'
 
 export default {
   components: {
-    Member, Login, News, Reserve, Comics,Order,ComicInfo,ComicReserve,ComicReturn,ComicAdd
+    Member, Login, News, Reserve, SeatInfo, SeatNow, Comics,Order,ComicInfo,ComicReserve,ComicReturn,ComicAdd
   },
   data() {
     return {
@@ -236,6 +239,11 @@ export default {
         {
           name: '會員管理',
           path: '/member',
+
+        },
+        {
+          name: '即時座位狀態',
+          path: '/seat_now',
 
         },
         {

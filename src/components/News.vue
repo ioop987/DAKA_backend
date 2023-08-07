@@ -1,149 +1,126 @@
 <template>
   <div>
- 
-
-    <Form >
+    <Form>
 
       <template v-slot:form_query>
         <button class="btn btn-dark member_add" type="submit">
-        新增會員
-        <img src="@/assets/images/member/plus.svg" alt="plus" class="member_plus"> 
-      </button>
-      <select class="form-select w-25" aria-label="Default select example">
-        <option selected>請選擇</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <input type="search">
- </template>
-      <template v-slot:form_table >
-        <table>
-        <tr>
-          <!-- 資料表頭 -->
-          <th v-for="column in columns">{{ column }}</th>
-        </tr>
-        <!-- 會員資料 -->
-        <tr v-for="(item, index) in dataList" :key="item.index" @click.prevent="memberInfo(index)">
-          <td>{{ item.name }}</td>
-          <td>{{ item.no }}</td>
-          <td>{{ item.rank }}</td>
-          <td>{{ item.mobile }}</td>
-          <td>{{ item.remain }}</td>
-          <td>{{ item.value }}</td>
-        </tr>
-      </table>
-  
+          新增消息
+          <img src="@/assets/images/member/plus.svg" alt="plus" class="member_plus">
+        </button>
+        <div class="col-md-2">
+          <select class="form-select">
+            <option selected>請選擇類別</option>
+            <option value="1">NEWS</option>
+            <option value="2">ACTIVITY</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <div class="input-group">
+            <input type="search" class="form-control" placeholder="" aria-describedby="basic-addon1" v-model="search" />
+            <span class="input-group-text" id="basic-addon1" @click.prevent="searchReserve">
+              <img src="@/assets/images/search.svg" alt="search">
+            </span>
+
+          </div>
+        </div>
+      </template>
+      <template v-slot:form_table>
+        <table class="main_list">
+          <tr>
+            <!-- 資料表頭 -->
+            <th v-for="column in columns">{{ column }}</th>
+          </tr>
+          <!--  消息資料 -->
+          <tr v-for="(item, index) in dataList" :key="item.index" @click="emitData(item)">
+            <td>{{ item.news_title }}</td>
+            <td>{{ item.news_category }}</td>
+            <td>{{ item.news_status }}</td>
+            <td>{{ item.news_date }}</td>
+            <td>{{ item.ename }}</td>
+            <td>{{ item.admin_no }}</td>
+            <button class="btn btn-dark member_add" type="submit">
+              delete
+            </button>
+          </tr>
+        </table>
+
       </template>
     </Form>
+    <NewsModal v-show="modalSwitch" @emit-modal="modalSwitch = false" :news="data"/>
   </div>
 </template>
 <script>
-
+import {GET} from '@/plugin/axios';
 import Form from '@/components/Form.vue';
-
+import { Step } from 'view-ui-plus';
+import NewsModal from '@/components/News.vue';
 export default {
   components: {
-    Form
+    Form, NewsModal,
   },
   data() {
     return {
-      memInfo: {
-        name: '',
-        no: '',
-        rank: '',
-        mobile: '',
-        remain: '',
-        value: ''
-      },
       dataList: [
         {
-          name: 1,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
+          news_title: '組隊集結，征服召喚峽谷！',
+          news_category: 'ACTIVITY',
+          news_status: '上架',
+          news_date: '2023-05-20',
+          news_pic: '',
+          news_text: '',
+          ename: 'Ellie',
+          admin_no: '1234-5678'
         },
         {
-          name: 2,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
+          news_title: '打咖設備大升級！',
+          news_category: 'NEWS',
+          news_status: '上架',
+          news_date: '2023-05-10',
+          news_pic: '',
+          news_text: '',
+          ename: 'Twiggy',
+          admin_no: '1234-7777'
         },
         {
-          name: 3,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
+          news_title: '打咖五月會員好禮！',
+          news_category: 'NEWS',
+          news_status: '上架',
+          news_date: '2023-05-01',
+          news_pic: '',
+          news_text: '',
+          ename: 'Yun',
+          admin_no: '1234-6666'
         },
-        {
-          name: 4,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
-        },
-        {
-          name: 5,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
-        },
-        {
-          name: 6,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
-        },
-        {
-          name: 7,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
-        },
-        {
-          name: 8,
-          no: 1,
-          rank: 1,
-          mobile: '',
-          remain: 11,
-          value: 1
-        },
+
       ],
       columns: [
-        '姓名',
-        '會員編號',
-        '會員等級',
-        '手機號碼',
-        '儲值餘額',
-        '當年度累積消費金額'
+        '標題',
+        '類別',
+        '狀態',
+        '編輯日期',
+        '編輯者',
+        '員工編號',
       ],
-      model: '',
-
+      data: [],
+      modalSwitch: false,
     }
   },
   methods: {
-    memberInfo(index) {
-      let { name, no, rank, mobile, remain, value } = this.dataList[index];
-
-      console.log(name, no, rank, mobile, remain, value);
-
-    },
-
-
-  }
+    emitData(data) {
+      this.data = data;
+      this.modalSwitch = true;
+    }
+  },
+  mounted() {
+      GET(`${this.$URL}/getAllNews.php`)
+        .then(res => {
+          console.log(res);
+          this.dataList = res;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  },
 }
 </script>
 
