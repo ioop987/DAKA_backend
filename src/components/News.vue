@@ -53,7 +53,7 @@
 import {GET} from '@/plugin/axios';
 import Form from '@/components/Form.vue';
 import { Step } from 'view-ui-plus';
-import NewsModal from '@/components/News.vue';
+import NewsModal from '@/components/NewsModal.vue';
 export default {
   components: {
     Form, NewsModal,
