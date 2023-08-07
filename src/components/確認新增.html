@@ -21,14 +21,24 @@
         top: 35px;
         left: 90px;
     }
-    .confirm {
+    .yes {
         width: 92px;
         background-color: #263238;
         color: white;
         border-radius: 30px;
         position: absolute;
         bottom: 20px;
-        right: 115px;
+        right: 180px;
+        font-size: 14px;
+    }
+    .no{
+        width: 92px;
+        background-color: #263238;
+        color: white;
+        border-radius: 30px;
+        position: absolute;
+        bottom: 20px;
+        right: 41px;
         font-size: 14px;
     }
 </style>
@@ -38,10 +48,12 @@
 
     <div class="back">
         <div class="text">
-            修改成功!
+            確認新增？
         </div>
         
-        <button class="confirm">返回</button>
+        <button class="yes">確定</button>
+        <button class="no">取消</button>
+
     </div>
 </body>
 

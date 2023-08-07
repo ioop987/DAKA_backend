@@ -10,14 +10,14 @@
     .management_all {
         background-color: #D0DbDf;
         width: 561px;
-        height: 398px;
+        height: 365px;
         padding: 10px 15px 15px;
     }
 
     .title {
         font-size: 24px;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
     }
 
     .gold {
@@ -38,7 +38,7 @@
         background-color: rgb(255, 255, 255);
         max-width: 540px;
         height: 233.78px;
-        padding: 30px 40px;
+        padding: 30px 20px;
         position: relative;
 
     }
@@ -51,46 +51,47 @@
     }
 
     .name {
-        margin-left: 20px;
+        margin-left: 18px;
         margin-right: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 25px;
         border-radius: 6px;
-        margin-top: 10px;
+        margin-top: 30px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+        
+
+    }
+
+    .branch {
+        margin-left: 20px;
+        border-radius: 6px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+
+    .admin_no {
+        margin-left: 15px;
+        margin-right: 20px;
+        margin-bottom: 25px;
+        border-radius: 6px;
+        border: 2px solid #CFD4D9;
+        background-color: #EBEBEB;
+
+    }
+
+    .ejob {
+        margin-left: 20px;
+        border-radius: 6px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
 
     }
 
     .password {
-        margin-left: 20px;
+        margin-left: 19px;
         border-radius: 6px;
-        border: 2px solid #CFD4D9;
-        background-color: #EBEBEB;
-
-    }
-
-    .phone {
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-        border: 2px solid #CFD4D9;
-        background-color: #EBEBEB;
-
-    }
-
-    .birthday {
-        margin-left: 20px;
-        border-radius: 6px;
-        border: 2px solid #CFD4D9;
-        background-color: #EBEBEB;
-
-    }
-
-    .mail {
-        margin-left: 7px;
-        border-radius: 6px;
-        width: 418px;
+        width: 416px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
 
@@ -116,19 +117,35 @@
         color: white;
         border-radius: 30px;
         position: absolute;
-        bottom: 20px;
+        bottom: 40px;
         right: 50px;
         font-size: 14px;
     }
-    .first{
+
+    .no {
+        margin-left: -31px;
+        display: inline-block;
+    }
+
+    .first {
         display: flex;
         align-items: center;
     }
-    .second{
+
+    .second {
         display: flex;
+
     }
-    .third{
+
+    .third {
         display: flex;
+
+    }
+    .name_label{
+        margin-left: 30px;
+    }
+    .password_label{
+        margin-left: 30px;
     }
 </style>
 
@@ -136,35 +153,32 @@
 
 
     <div class="management_all">
-        <div class="title">白金會員_王曉明</div>
-        <div class="gold">
-            <div class="buy">儲值金:5600元</div>
-            <div class="spend">當年度累積消費金額:3670元</div>
-        </div>
-        <div class="member_infor">
+        <div class="title">新增帳號</div>
+
+        <div class="member_infor">  
 
             <div class="infor">
                 <img src="../assets/images/member/pen_icon.png" alt="編輯" class="pen">
                 <div class="first">
-                    <label for="name"> 姓名<input type="text" class="name" id="name"></label>
-                    <label for="password">密碼<input type="text" class="password right" id="password"></label>
+                    <label for="name" class="name_label"> 姓名<input type="text" class="name" id="name"></label>
+                    <label for="password">分館<input type="text" class="branch" id="branch"></label>
                 </div>
                 <div class="second">
 
-                    <label for="phone">電話<input type="text" class="phone" id="phone"></label>
-                    <label for="birthday">生日<input type="text" class="birthday" id="birthday"></label>
+                    <label for="phone">員工編號<input type="text" class="admin_no" id="admin_no"></label>
+                    <label for="birthday">職稱<input type="text" class="ejob" id="ejob"></label>
                 </div>
                 <div class="third">
-                    <label for="mail">E-Mail<input type="text" class="mail" id="mail"></label>
+                    <label for="mail" class="password_label">密碼<input type="text" class="password" id="password"></label>
                 </div>
-                <div class="barcode">
-                    <img src="../assets/images/member/barcode.png" alt="條碼">1234567890ABCD
-                </div>
+
+
+
+
                 <button class="confirm">確認</button>
 
             </div>
         </div>
-
 </body>
 
 </html>

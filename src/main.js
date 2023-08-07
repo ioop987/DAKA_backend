@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 import "@/assets/scss/_style.scss";
+import "@/assets/scss/components/Modal.scss";
+
 
 
 const app = createApp(App);

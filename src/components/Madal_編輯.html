@@ -32,46 +32,17 @@
         margin-right: 40px;
     }
 
-    .buttons {
-margin-left: 5px;
-
-    }
-
-    .button_left {
-        width: 51%; 
-        height: 31.75px;
-        padding: 0;
-        margin: 0 -5px;
-        border: none;
-        background-color: white;
-        font-weight: 500;
-        font-size: 16px;
-
-    }
-
-    .button_right {
-        width: 51%;
-        height: 31.75px;
-        padding: 0;
-        margin: 0 -5px;
-        border: none;
-        font-weight: 500;
-        background-color: #38505c;
-        color: white;
-        font-size: 16px;
-
-
-    }
 
     .infor {
         background-color: rgb(255, 255, 255);
         max-width: 540px;
-        height: 233.78px;
+        height: 250px;
         padding: 30px 40px;
         position: relative;
-        
+
     }
-    .pen{
+
+    .pen {
         position: absolute;
         right: 50px;
         top: 10px;
@@ -81,15 +52,15 @@ margin-left: 5px;
     .name {
         margin-left: 20px;
         margin-right: 20px;
-        margin-bottom: 10px;
-        border-radius: 6px; 
+        border-radius: 6px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
 
     }
-    #sex{
-        width: 170px;
-        height: 30px;
+
+    #sex {
+        width: 177px;
+        height: 31px;
         margin-left: 20px;
         border-radius: 6px;
         border: 2px solid #CFD4D9;
@@ -108,7 +79,7 @@ margin-left: 5px;
         margin-left: 20px;
         margin-right: 20px;
         margin-bottom: 10px;
-        border-radius: 6px; 
+        border-radius: 6px;
         margin-top: 10px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
@@ -119,7 +90,7 @@ margin-left: 5px;
         margin-left: 20px;
         margin-right: 20px;
         margin-bottom: 10px;
-        border-radius: 6px; 
+        border-radius: 6px;
         margin-top: 10px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
@@ -133,16 +104,17 @@ margin-left: 5px;
         background-color: #EBEBEB;
         margin-left: 8px;
     }
-    .address{
+
+    .address {
         margin-left: 20px;
-        margin-right: 10px;
         margin-bottom: 10px;
-        border-radius: 6px; 
+        border-radius: 6px;
         margin-top: 10px;
         border: 2px solid #CFD4D9;
         background-color: #EBEBEB;
-        width: 410px;
+        width: 419px;
     }
+
     input {
         height: 24px;
     }
@@ -153,18 +125,37 @@ margin-left: 5px;
         max-width: 100px;
         font-size: 13px;
         position: absolute;
-        bottom: 35px;
-        right: 56px;
+        bottom: 42px;
+        right: 50px;
     }
-    .confirm{   
+
+    .confirm {
         width: 92px;
         background-color: #263238;
         color: white;
         border-radius: 30px;
         position: absolute;
         bottom: 5px;
-        right: 50px;
+        right: 46px;
         font-size: 14px;
+    }
+
+    .first {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .second {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .third {
+        display: flex;
+        align-items: center;
+
     }
 </style>
 
@@ -178,32 +169,33 @@ margin-left: 5px;
             <div class="spend">當年度累積消費金額:3670元</div>
         </div>
         <div class="member_infor">
-            <div class="buttons">
-                <button class="button_left">會員資料</button>
-                <button class="button_right">會員儲值金</button>
-            </div>
-            
             <div class="infor">
                 <img src="../assets/images/member/pen_icon.png" alt="編輯" class="pen">
-                姓名<input type="text" class="name">
-                性別<select name="" id="sex">
-                    <option selected disabled hidden></option>
-                    <option >男</option>
-                    <option >女</option>
-                </select>
+                <div class="first">
+                    姓名<input type="text" class="name">
+                    性別<select name="" id="sex">
+                        <option selected disabled hidden></option>
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
                 <!-- 性別<input type="list" class="sex"> -->
-                電話<input type="text" class="phone">
-                密碼<input type="text" class="password">
-                生日<input type="text" class="birthday">
-                E-Mail<input type="text" class="mail">
+                <div class="second">
+                    電話<input type="text" class="phone">
+                    密碼<input type="text" class="password">
+                </div>
+                <div class="third">
+                    生日<input type="text" class="birthday">
+                    E-Mail<input type="text" class="mail">
+                </div>
                 地址<input type="text" class="address">
                 <div class="barcode">
                     <img src="../assets/images/member/barcode.png" alt="條碼">1234567890ABCD
                 </div>
                 <button class="confirm">確認</button>
 
+            </div>
         </div>
-    </div>
 </body>
 
 </html>

@@ -1,78 +1,51 @@
 <template>
-    <div class="member_modal">
-        <div class="member_modal_top">
-            <p>黃金會員_黃曉明</p>
-            <img src="@/assets/images/member/close.svg" alt="">
+    <div class="management_all">
+        <div class="title">{{ management_all.title }}</div>
+        <div class="gold">
+            <div class="buy">{{ management_all.buy }}</div>
+            <div class="spend">{{ management_all.spend }}</div>
         </div>
-        <div class="member_modal_value">
-            <p>儲值金:5600元</p>
-            <p>當年度累積消費金額 : 3670元</p>
-        </div>
-        <div class="modal_inner">
-            <div class="modal_memberinfo">
-                <h5>
-                    會員資料
+        <div class="member_infor">
 
-                </h5>
-<div class="memberinfo_name">
-    <label for="">姓名</label>
-    <input type="text" placeholder="王大明" readonly>
-    <label for="">電話</label>
-    <input type="number" placeholder="0988-358888" readonly>
-</div>
-<div class="memberinfo_password">
-    <label for="">密碼</label>
-    <input type="text" placeholder="123456789" readonly>
-    <label for="">生日</label>
-    <input type="number" placeholder="2001-1-1" readonly>
-</div>
-<label for="">生日</label>
-    <input type="number" placeholder="2001-1-1" readonly>
+            <div class="infor">
+                <img src="../assets/images/member/pen_icon.png" alt="編輯" class="pen">
+                <div class="first">
+                    <label for="name"> 姓名<input type="text" class="name" id="name"></label>
+                    <label for="password">密碼<input type="text" class="password" id="password"></label>
+                </div>
+                <div class="second">
 
-            </div>
-            <div class="modal_memberinfo">
-                <h5>
+                    <label for="phone">電話<input type="text" class="phone" id="phone"></label>
+                    <label for="birthday">生日<input type="text" class="birthday" id="birthday"></label>
+                </div>
+                <div class="third">
+                    <label for="mail">信箱<input type="text" class="mail" id="mail"></label>
+                </div>
+                <div class="barcode">
+                    <img src="../assets/images/member/barcode.png" alt="條碼">{{ management_all.mem_no }}
+                </div>
+                <button class="confirm">確認</button>
 
-                    會員儲值金
-                </h5>
             </div>
         </div>
     </div>
-
-
     
 </template>
 
-<style lang="scss" scoped>
-.member_modal {
-    width: 561px;
-    height: 398px;
-    background-color: rgba(207, 212, 217, 1);
-}
-</style>
 <script>
-export default {
-    props: {
-    },
-    components: {
 
-    },
+export default ({
     data() {
         return {
+            management_all:
+            {
+                title: '白金會員_周杰倫',
+                buy: '儲值金:5600元',
+                spend: '當年度累積消費金額:3670元',
+                mem_no: '1234567890ABCD',
+            },
 
         }
-    },
-    computed: {
-
-    },
-    methods: {
-
-    },
-    watch: {
-
-    },
-
-
-}
-
+    }
+})
 </script>

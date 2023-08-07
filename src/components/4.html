@@ -33,37 +33,6 @@
         color: #FFA800;
     }
 
-    .buttons {
-        margin-left: 5px;
-
-    }
-
-    .button_left {
-        width: 51%;
-        height: 31.75px;
-        padding: 0;
-        margin: 0 -5px;
-        border: none;
-        background-color: #38505c;
-        color: white;
-
-        font-weight: 500;
-        font-size: 16px;
-
-    }
-
-    .button_right {
-        width: 51%;
-        height: 31.75px;
-        padding: 0;
-        margin: 0 -5px;
-        border: none;
-        font-weight: 500;
-        background-color: white;
-        font-size: 16px;
-
-
-    }
 
     .infor {
         background-color: rgb(255, 255, 255);
@@ -85,6 +54,15 @@
         right: 40px;
         font-size: 14px;
     }
+    p{
+        display: inline-block;
+        margin-left: 123px;
+        margin-top: 70px;
+    }
+    #gold{
+        margin-left: 15px;
+        width: 120px;
+    }
 </style>
 
 <body>
@@ -97,14 +75,17 @@
             <div class="spend">當年度累積消費金額:3670元</div>
         </div>
         <div class="member_infor">
-            <div class="buttons">
-                <button class="button_left">會員資料</button>
-                <button class="button_right">會員儲值金</button>
-            </div>
 
             <div class="infor">
-
-
+                <p>充值儲值金</p>
+                <select name="" id="gold">
+                    <option selected disabled hidden>請選擇</option>
+                    <option>100元</option>
+                    <option>200元</option>
+                    <option>500元</option>
+                    <option>1000元</option>
+                    <option>手動輸入</option>
+                </select>
                 <button class="confirm">確認儲值</button>
 
             </div>
